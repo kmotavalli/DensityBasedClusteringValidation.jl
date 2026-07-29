@@ -1,7 +1,7 @@
 name = "DensityBasedClusteringValidation"
 uuid = "12d5b8d3-741a-4b7f-ac2a-a24bdbdeca62"
 authors = ["Keivan Motavalli <keivan@motavalli.me>"]
-version = "0.1.0"
+version = "0.1.1"
 license = "MIT"
 
 [deps]

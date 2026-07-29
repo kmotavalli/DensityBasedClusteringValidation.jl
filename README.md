@@ -116,6 +116,21 @@ julia --threads 16
 
 or set the environment variable ```JULIA_NUM_THREADS``` on your system.
 
+## Example execution (w/ classification run)
+
+after having installed the DensityBasedClusteringValidation and Clustering Julia packages via pkg: 
+
+```julia
+import DensityBasedClusteringValidation, Clustering
+
+points = randn(3, 10000)
+clustering = Clustering.dbscan(points, 0.05)
+
+index = DensityBasedClusteringValidation.dbcv(points, clustering.assignments)
+
+print(index)
+```
+
 
 ## Supported options
 
