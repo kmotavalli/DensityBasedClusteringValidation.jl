@@ -301,7 +301,7 @@ module DensityBasedClusteringValidation
         #keep whole colums, on true, bool_keep_matrix is not a flattened index for X!
         X = @view Xo[bool_keep_matrix, :]
 
-        if size(y) == 0
+        if isempty(y)
             return 0.0
         end
 
