@@ -205,9 +205,9 @@ module DensityBasedClusteringValidation
                 return (internal_nodes_i, mst_matrix)
             end
         elseif length(internal_weights) > 1
-                return (range(size(mutual_reach_distances, 1), step=1), internal_weights)
+                return (1:size(mutual_reach_distances, 1), internal_weights)
         else
-                return (range(size(mutual_reach_distances, 1), step=1), mst_matrix)
+                return (1:size(mutual_reach_distances, 1), mst_matrix)
         end
 
     end
@@ -285,7 +285,11 @@ module DensityBasedClusteringValidation
         n, d = size(Xo)
 
         if n != size(yo, 1)
-            throw(ArgumentError("Mismatch in input data (X) lenght and their clustering id assignments (y)"))
+            Xo = transpose(Xo)
+            n, d = size(Xo)
+            if n != size(yo, 1)
+                throw(ArgumentError("Mismatch in input data (X) lenght and their clustering id assignments (y)"))
+            end
         end
 
         #clusters containing a single element can have that element regarded as noise.
@@ -297,7 +301,7 @@ module DensityBasedClusteringValidation
         #keep whole colums, on true, bool_keep_matrix is not a flattened index for X!
         X = @view Xo[bool_keep_matrix, :]
 
-        if isempty(y)
+        if size(y) == 0
             return 0.0
         end
 
